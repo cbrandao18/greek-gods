@@ -34,5 +34,40 @@ export default {
         name
         coordinates
       }
-    }`
+    }`,
+  UPDATE_GOD_NAME: gql`
+    mutation updateGod($id: ID, $name: String) {
+      updateGod(id: $id, name: $name) {
+        id
+        name
+      }
+    }
+    `,
+  UPDATE_GOD_TYPE: gql`
+    mutation updateGod($id: ID, $type: String) {
+      updateGod(id: $id, type: $type) {
+        id
+        name
+        type
+      }
+    }
+    `,
+  UPDATE_GOD_DESCRIPTION: gql`
+    mutation updateGod($id: ID, $description: String) {
+      updateGod(id: $id, description: $description) {
+        id
+      }
+    }
+    `,
+  REMOVE_GOD_DOMAIN: gql`
+    mutation removeGodDomain($godId: ID, $domain: String){
+      removeGodDomain(godId: $godId, domain: $domain){
+        id
+        name
+        type
+        domains
+        description
+      }
+    }
+  `
 };
