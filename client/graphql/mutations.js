@@ -69,5 +69,29 @@ export default {
         description
       }
     }
+  `,
+  ADD_GOD_DOMAIN: gql`
+    mutation addGodDomain($godId: ID, $domain: String){
+      addGodDomain(godId: $godId, domain: $domain){
+        id
+        name
+        type
+        domains
+        description
+      }
+    }
+  `,
+  UPDATE_GOD_ABODE: gql`
+    mutation updateGodAbode($godId: ID, $abodeId: ID){
+      updateGodAbode(godId: $godId, abodeId: $abodeId){
+        id
+        name
+        abode {
+          id
+          name
+          coordinates
+        }
+      }
+    }
   `
 };

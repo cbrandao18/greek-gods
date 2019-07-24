@@ -4,9 +4,7 @@ import { Mutation } from "react-apollo";
 import { IconContext } from "react-icons";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 import Mutations from "../../graphql/mutations";
-const { REMOVE_GOD_DOMAIN } = Mutations;
-import Queries from "../../graphql/queries";
-const { FETCH_GOD } = Queries;
+const { REMOVE_GOD_DOMAIN, ADD_GOD_DOMAIN } = Mutations;
 
 class DomainDetail extends React.Component {
     constructor(props) {
@@ -17,7 +15,8 @@ class DomainDetail extends React.Component {
         this.state = {
             editing: false,
             godId: this.props.id,
-            domains: this.props.domains || ""
+            domains: this.props.domains || "",
+            newDomain: ""
         };
 
         this.handleEdit = this.handleEdit.bind(this);
@@ -64,22 +63,22 @@ class DomainDetail extends React.Component {
         )})
         if (this.state.editing) {
             return (
-                <Mutation mutation={UPDATE_GOD_DESCRIPTION}>
-                    {(updateGodDescription, data) => (
+                <Mutation mutation={ADD_GOD_DOMAIN}>
+                    {(addGodDomain, data) => (
                         <div>
                             <form
                                 onSubmit={e => {
                                     e.preventDefault();
-                                    updateGodDescription({
-                                        variables: { id: this.props.id, description: this.state.description }
-                                    }).then(() => this.setState({ editing: false }));
+                                    addGodDomain({
+                                        variables: { godId: this.props.id, domain: this.state.newDomain }
+                                    }).then(() => this.setState({ editing: false, newDomain: "" }));
                                 }}
                             >
-                                <textarea
-                                    value={this.state.description}
-                                    onChange={this.fieldUpdate("description")}
+                                <input
+                                    value={this.state.newDomain}
+                                    onChange={this.fieldUpdate("newDomain")}
                                 />
-                                <button type="submit">Update Description</button>
+                                <button type="submit">Add Domain</button>
                             </form>
                         </div>
                     )}

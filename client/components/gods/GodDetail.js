@@ -5,6 +5,7 @@ import NameDetail from '../detail/Name_Detail'
 import TypeDetail from '../detail/Type_Detail'
 import DescriptionDetail from '../detail/Description_Detail'
 import DomainDetail from '../detail/Domain_Detail'
+import AbodeDetail from '../detail/Abode_Detail'
 const { FETCH_GOD } = Queries;
 
 const GodDetail = props => {
@@ -21,6 +22,7 @@ const GodDetail = props => {
                   <TypeDetail id={data.god.id} type={data.god.type} />
                   <DescriptionDetail id={data.god.id} description={data.god.description} />
                   <DomainDetail id={data.god.id} domains={data.god.domains}/>
+                  <AbodeDetail id={data.god.id} abode={data.god.abode}/>
                 </div>;
             }}
         </Query>
